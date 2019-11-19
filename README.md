@@ -1,2 +1,2 @@
-# interview_questions
-Practice for internship coding interview questions.
+# coding_challenges
+Practice for solving various coding challenges, and implementing various data structures and algorithms.
