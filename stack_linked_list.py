@@ -61,7 +61,7 @@ class LinkedList:
         else:
             data = self.head.data
             self.head = self.head.next
-            size -= 1
+            self.size -= 1
             if self.isEmpty():
                 self.tail = None
             else:

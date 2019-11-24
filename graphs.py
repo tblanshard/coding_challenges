@@ -1,3 +1,5 @@
+from priority_queue import PriorityQueue
+
 class Queue():
     def __init__(self):
         self.queue = []
@@ -53,9 +55,7 @@ class Graph:
         print(root)
         for neighbour in self.graph[root]:
             if (self.dfs_visited[neighbour] == False):
-                g.dfs(neighbour)
-
-
+                self.dfs(neighbour)
 
 if __name__ == "__main__":
     graph = {'0': ['1', '2', '3'],

@@ -29,34 +29,16 @@ class BTree:
             else:
                 self._add(node.right, value)
 
-    def find(self, value):
-        if self.root.value == value:
+    def contains(self, node, data):
+        if node == None:
+            return False
+        elif node.value == data:
             return True
         else:
-            value = (self._find(self.root, value))
-            return value
-
-    def _find(self, node, value):
-        if value < node.value:
-            if node.left == None:
-                print("a")
-                return False
-            elif node.left.value == value:
-                print("b")
-                return True
+            if data < node.value:
+                return self.contains(node.left, data)
             else:
-                print("c")
-                self._find(node.left, value)
-        if value > node.value:
-            if node.right == None:
-                print("d")
-                return False
-            elif node.right.value == value:
-                print("e")
-                return True
-            else:
-                print("f")
-                self._find(node.right, value)
+                return self.contains(node.right, data)
 
     def inorder(self, node):
         if node != None:
@@ -76,6 +58,9 @@ class BTree:
             self.postorder(node.right)
             print(node.value, end=" ")
 
+    #def remove(self, node):
+
+
 tree2 = Node(1, Node(12, Node(5, None, None), Node(6, None, None)), Node(9, None, None))
 tree1 = BTree()
 
@@ -91,5 +76,7 @@ tree1.preorder(tree1.getRoot())
 print("\n")
 tree1.postorder(tree1.getRoot())
 print("\n")
-print(tree1.find(5))
-print(tree1.find(22))
+#print(tree1.find(5))
+#print(tree1.find(22))
+print(tree1.contains(tree1.getRoot(), 5))
+print(tree1.contains(tree1.getRoot(), 22))

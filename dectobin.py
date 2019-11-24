@@ -34,24 +34,15 @@ class Stack:
     def printStack(self):
         print(self.stack)
 
-def match_brackets(brackets):
-    pairs = {'[':']', '{':'}', '(':')', ']':None, '}':None, ')':None}
-    stack = Stack()
-    for bracket in brackets:
-        if stack.isEmpty():
-            stack.push(bracket)
-        else:
-            if (pairs[stack.peek()] != bracket):
-                stack.push(bracket)
-            else:
-                stack.pop()
-    if stack.isEmpty():
-        return "Valid"
-    else:
-        return "Invalid"
+dec = int(input())
+stack = Stack()
+bin = ""
 
-#print(match_brackets("[{}]"))
-#print(match_brackets("(()())"))
-#print(match_brackets("{]"))
-#print(match_brackets("[()]))()"))
-#print(match_brackets("[]{}({})"))
+while dec != 0:
+    stack.push(dec % 2)
+    dec = dec // 2
+
+while (stack.isEmpty() != True):
+    bin += str(stack.pop())
+
+print(bin)
