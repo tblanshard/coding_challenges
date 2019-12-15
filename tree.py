@@ -7,6 +7,8 @@ class Node:
 class BTree:
     def __init__(self):
         self.root = None
+        self.nodes = []
+        self.visited = []
 
     def getRoot(self):
         return self.root
@@ -14,6 +16,7 @@ class BTree:
     def add(self, value):
         if self.root == None:
             self.root = Node(value, None, None)
+            self.nodes.append(self.root)
         else:
             self._add(self.root, value)
 
@@ -21,11 +24,13 @@ class BTree:
         if value < node.value:
             if node.left == None:
                 node.left = Node(value, None, None)
+                self.nodes.append(node.left)
             else:
                 self._add(node.left, value)
         if value > node.value:
             if node.right == None:
                 node.right = Node(value, None, None)
+                self.nodes.append(node.right)
             else:
                 self._add(node.right, value)
 
@@ -46,6 +51,14 @@ class BTree:
             print(node.value, end=" ")
             self.inorder(node.right)
 
+    def inorder2(self, node, total):
+        if node != None:
+            total = self.inorder2(node.left, total)
+            total += node.value
+            print(node.value, end=" ")
+            total = self.inorder2(node.right, total)
+        return total
+
     def preorder(self, node):
         if node != None:
             print(node.value, end=" ")
@@ -57,6 +70,10 @@ class BTree:
             self.postorder(node.left)
             self.postorder(node.right)
             print(node.value, end=" ")
+
+    def findLongestRoute(self):
+        for node in self.nodes:
+            print(self.inorder2(node, 0))
 
     #def remove(self, node):
 
@@ -80,3 +97,5 @@ print("\n")
 #print(tree1.find(22))
 print(tree1.contains(tree1.getRoot(), 5))
 print(tree1.contains(tree1.getRoot(), 22))
+
+print(tree1.findLongestRoute())
